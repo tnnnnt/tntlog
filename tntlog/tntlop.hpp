@@ -4,6 +4,9 @@
 class TNTLog {
   public:
 	enum Level : unsigned char { LevelError, LevelWarn, LevelInfo, LevelDebug, LevelTrace };
+
+	TNTLog() : m_logLevel(LevelInfo) {}
+	TNTLog(Level level) : m_logLevel(level) {}
 	void SetLevel(Level level) { m_logLevel = level; }
 	void Error(const std::string& message) const {
 		if (m_logLevel >= LevelError) {
@@ -32,5 +35,5 @@ class TNTLog {
 	}
 
   private:
-	Level m_logLevel = LevelInfo;
+	Level m_logLevel;
 };
